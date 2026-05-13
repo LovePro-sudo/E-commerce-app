@@ -4,11 +4,13 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 25px;
+  background-color: #edebeb50;
+  box-shadow: 0 10px 16px rgba(0, 0, 0, 0.1);
 
   .logo-container {
-    height: 100%;
-    width: 70px;
-    padding: 25px;
+    height: 80%;
+    width: 40px;
+    padding: 15px;
   }
 
   .nav-links-container {
