@@ -1,6 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
+import { UserProvider } from "./contexts/user.context";
+import { ProductProvider } from "./contexts/product.context";
+import { InCartProvider } from "./contexts/cart.context";
+import { PopUpProvider } from "./contexts/popup.context";
 import "./index.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
@@ -9,7 +13,15 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <PopUpProvider>
+        <UserProvider>
+          <ProductProvider>
+            <InCartProvider>
+              <App />
+            </InCartProvider>
+          </ProductProvider>
+        </UserProvider>
+      </PopUpProvider>
     </BrowserRouter>
   </React.StrictMode>,
 );

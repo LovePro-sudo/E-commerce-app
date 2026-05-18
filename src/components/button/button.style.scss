@@ -1,6 +1,6 @@
 .button-container {
-  min-width: 165px;
-  width: auto;
+  min-width: 200px;
+  width: 120px;
   height: 50px;
   letter-spacing: 0.5px;
   line-height: 50px;
@@ -14,15 +14,20 @@
   border: none;
   cursor: pointer;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  font-weight: bold;
+  border-radius: 30px;
+  
 
   &:hover {
     background-color: white;
     color: black;
     border: 1px solid black;
+
   }
 
   &.google-sign-in {
+    border-radius: 30px;
     background-color: #4285f4;
     color: white;
 
@@ -32,7 +37,8 @@
     }
   }
 
-  &.inverted {
+  &.checkout {
+    border-radius: 30px;
     background-color: white;
     color: black;
     border: 1px solid black;
@@ -43,4 +49,18 @@
       border: none;
     }
   }
+
+    &.inverted {
+    border-radius: 30px;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+
+    &:hover {
+      background-color: black;
+      color: white;
+      border: none;
+    }
+  }
+  
 }

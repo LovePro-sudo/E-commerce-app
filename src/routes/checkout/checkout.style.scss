@@ -1,0 +1,30 @@
+.check-out-container {
+  width: 85%;
+  margin: 30px auto;
+  display: flex;
+  flex-direction: column;
+  .check-out-header {
+    display: grid;
+    grid-template-columns: 1.1fr 1.62fr 1.2fr 1fr 0.5fr;
+    padding: 15px 0;
+    border-bottom: 1px solid lightgrey;
+    font-weight: bold;
+    color: grey;
+    margin-bottom: 20px;
+  }
+  .total-container {
+    align-self: flex-end;
+
+    margin-top: 30px;
+    padding: 15px 25px;
+
+    font-size: 30px;
+    font-weight: 700;
+    color: #111;
+    .value1 {
+      color: grey;
+    }
+    .value2 {
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
@@ -6,7 +6,8 @@ import {
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
 import "./sign-up-form.style.scss";
-
+import PopUp from "../pop-up/pop-up.component";
+import { PopUpContext } from "../../contexts/popup.context";
 const defaultFormFields = {
   displayName: "",
   email: "",
@@ -17,6 +18,8 @@ const defaultFormFields = {
 const SignUpForm = () => {
   const [formFields, setformFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
+  const { setShowPopUp, setMessage, setTitle } = useContext(PopUpContext);
+
 
   const resetFormField = () => {
     setformFields(defaultFormFields);
@@ -26,22 +29,36 @@ const SignUpForm = () => {
     event.preventDefault();
 
     if (password !== confirmPassword) {
-      alert("Passwords do not match");
+      setShowPopUp(true);
+      setTitle("Sign-up Failed");
+      setMessage("Password does not match.");
       return;
     }
     try {
-      const { user } = await createAuthUserWithEmailAndPassword(
+      const user = await createAuthUserWithEmailAndPassword(
         email,
         password,
       );
-
       await createUserDocumentFromAuth(user, { displayName });
       resetFormField();
     } catch (e) {
-      if (e.code === "auth/email-already-in-use") {
-        alert("Email already exist!");
-      } else {
-        console.log("user encountered an error", e);
+      console.log(e.code);
+      switch (e.code) {
+        case "auth/email-already-in-use":
+          setShowPopUp(true);
+          setTitle("Sign-up Failed");
+          setformFields(defaultFormFields);
+          setMessage("This email is already in use.");
+          break;
+
+        case "auth/weak-password":
+          setShowPopUp(true);
+          setTitle("Sign-up Failed");
+          setMessage("Password should be at least 6 characters.");
+          break;
+
+        default:
+          break;
       }
     }
   };
@@ -53,6 +70,7 @@ const SignUpForm = () => {
 
   return (
     <div className="sign-up-container">
+      <PopUp />
       <h2>Don't have an account?</h2>
       <span>Sign with email and password</span>
       <form onSubmit={onSubmitHandler}>

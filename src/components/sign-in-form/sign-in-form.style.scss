@@ -14,5 +14,9 @@ h2 {
 
 .buttons-container {
   display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+
   justify-content: space-between;
 }
