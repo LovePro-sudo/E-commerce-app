@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { UserProvider } from "./contexts/user.context";
-import { ProductProvider } from "./contexts/product.context";
+import { CategoriesProvider} from "./contexts/product.context";
 import { InCartProvider } from "./contexts/cart.context";
 import { PopUpProvider } from "./contexts/popup.context";
 import "./index.scss";
@@ -15,11 +15,11 @@ root.render(
     <BrowserRouter>
       <PopUpProvider>
         <UserProvider>
-          <ProductProvider>
+          <CategoriesProvider>
             <InCartProvider>
               <App />
             </InCartProvider>
-          </ProductProvider>
+          </CategoriesProvider>
         </UserProvider>
       </PopUpProvider>
     </BrowserRouter>

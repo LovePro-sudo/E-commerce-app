@@ -24,7 +24,7 @@ const CheckOutPage = () => {
       })}
       <div className="total-container">
         <span className="value1">Total: </span>
-        <span className="value2">{totalPrice}$</span>
+        <span>{totalPrice}$</span>
       </div>
     </div>
   );
